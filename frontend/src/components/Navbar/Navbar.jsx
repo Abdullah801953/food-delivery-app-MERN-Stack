@@ -3,24 +3,25 @@ import "../../components/Navbar/Navbar.css";
 import { assets } from "../../assets/assets";
 import LocalMallRoundedIcon from '@mui/icons-material/LocalMallRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-const Navbar = () => {
+import { Link } from "react-router-dom";
+const Navbar = ({setShowLogin}) => {
     const [menu,Setmenu]=useState("home")
   return (
     <div className="navbar">
       <img src={assets.logo} alt="" className="logo" />
       <ul className="navbar-menu">
-        <li onClick={()=>{Setmenu("home")}} className={menu==="home"?"active":""}>home</li>
-        <li onClick={()=>{Setmenu("menu")}} className={menu==="menu"?"active":""}>menu</li>
-        <li onClick={()=>{Setmenu("mobile-app")}} className={menu==="mobile-app"?"active":""}>mobile-app</li>
-        <li onClick={()=>{Setmenu("contact us")}} className={menu==="contact us"?"active":""}>contact us</li>
+        <Link to='/'onClick={()=>{Setmenu("home")}} className={menu==="home"?"active":""}>home</Link>
+        <a href="#explore-menu" onClick={()=>{Setmenu("menu")}} className={menu==="menu"?"active":""}>menu</a>
+        <a href="#app-download" onClick={()=>{Setmenu("mobile-app")}} className={menu==="mobile-app"?"active":""}>mobile-app</a>
+        <a href="#footer" onClick={()=>{Setmenu("contact us")}} className={menu==="contact us"?"active":""}>contact us</a>
       </ul>
       <div className="navbar-right">
         <SearchRoundedIcon/>
         <div className="navbar-search-icon">
-            <LocalMallRoundedIcon/>
+           <Link to={'cart'}><LocalMallRoundedIcon/></Link>
             <div className="dot"></div>
         </div>
-        <button>sign in</button>
+        <button onClick={()=>{setShowLogin(true)}}>sign in</button>
       </div>
     </div>
   );
