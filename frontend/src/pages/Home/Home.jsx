@@ -10,7 +10,6 @@ const Home = () => {
       <Header/>
       <ExploreMenu catagories={catagories} setCatagories={setCatagories}/>
       <FoodDisplay catagories={catagories}/>
-      
     </div>
   )
 } 
