@@ -1,0 +1,96 @@
+.my-orders {
+    padding: 3rem 1rem;
+    max-width: 1000px;
+    margin: auto;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    color: #1e1e2f;
+  }
+  
+  .my-orders h2 {
+    font-size: 2.4rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2d2d3a;
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .my-orders-order {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    border: 1px solid #e0e0e0;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: box-shadow 0.3s ease;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+  }
+  
+  .my-orders-order:hover {
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+  }
+  
+  .my-orders-order img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .my-orders-order p {
+    margin: 0;
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+  
+  .my-orders-order .order-status {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: white;
+    background-color: #4CAF50;
+    width: fit-content;
+  }
+  
+  .my-orders-order .order-status.pending {
+    background-color: #fbc02d;
+  }
+  
+  .my-orders-order .order-status.cancelled {
+    background-color: #e53935;
+  }
+  
+  .my-orders-order button {
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, #4CAF50, #43a047);
+    border: none;
+    color: white;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: fit-content;
+  }
+  
+  .my-orders-order button:hover {
+    background: linear-gradient(135deg, #43a047, #388e3c);
+  }
+  
+  @media (max-width: 600px) {
+    .my-orders h2 {
+      font-size: 1.8rem;
+    }
+    .my-orders-order {
+      padding: 1rem;
+    }
+  }
+  

@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import "./Add.css";
 import { assets } from "../../assets/assets";
-const Add = () => {
+import { toast } from "react-toastify";
+const Add = ({url}) => {
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -14,12 +16,31 @@ const Add = () => {
     const value = event.target.value;
     setData((data) => ({ ...data, [name]: value }));
   };
-  useEffect(()=>{
-    console.log(data)
-  },[data])
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("description", data.description);
+    formData.append("price", Number(data.price));
+    formData.append("category", data.category);
+    formData.append("image", image);
+    const response = await axios.post(`${url}/api/food/add`, formData);
+    if (response.data.success) {
+      setData({
+        name: "",
+        description: "",
+        price: "",
+        category: "Salad",
+      });
+      setImage(false);
+      toast.success("Food added successfully!");
+    } else {
+      toast.error("Failed to add food.");
+    }
+  };
   return (
     <div className="add">
-      <form className="flex-col">
+      <form className="flex-col" onSubmit={onSubmitHandler}>
         <div className="add-image-upload flex-col">
           <p>Upload Image</p>
           <label htmlFor="image">
@@ -76,7 +97,13 @@ const Add = () => {
           </div>
           <div className="add-price flex-col">
             <p>Product Price</p>
-            <input onChange={onChangeHandler} value={data.price} type="number" name="price" placeholder="$20" />
+            <input
+              onChange={onChangeHandler}
+              value={data.price}
+              type="number"
+              name="price"
+              placeholder="$20"
+            />
           </div>
         </div>
         <button type="submit" className="add-btn">
